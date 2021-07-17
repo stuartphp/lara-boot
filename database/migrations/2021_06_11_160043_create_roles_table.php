@@ -17,7 +17,6 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained();
             $table->string('name');
-            $table->text('permissions');
             $table->timestamps();
         });
     }

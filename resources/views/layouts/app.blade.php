@@ -14,13 +14,35 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('css')
+    @livewireStyles
 </head>
 <body>
 <div id="app">
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    @auth
+        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">{{ __('global.logout') }}</a>
+    @endauth
+    <main class="container-fluid">
         @yield('content')
     </main>
 </div>
+<form id="logoutform" action="{{ url('logout') }}" method="POST" style="display: none;">
+    {{ csrf_field() }}
+</form>
+@livewireScripts
+@stack('script')
+<script>
+    window.addEventListener('alert', event => {
+        toastr[event.detail.type](event.detail.message, event.detail.title ?? '')
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        }
+    });
+    window.addEventListener('modal', event => {
+        $('#' + event.detail.modal).modal(event.detail.action);
+    });
+</script>
 </body>
 </html>
 
