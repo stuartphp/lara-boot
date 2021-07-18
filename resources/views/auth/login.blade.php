@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="card login-card">
+    <div class="card rounded-3">
         <div class="row no-gutters">
             <div class="col-md-5">
-                <img src="/img/login.jpg" alt="login" class="login-card-img">
+                <img src="/img/login.jpg" alt="login" class="img">
             </div>
             <div class="col-md-7">
                 @if($errors->any())
@@ -22,7 +22,7 @@
                     <div class="brand-wrapper">
                         <img src="/img/logo.png" alt="logo" class="logo">
                     </div>
-                    <p class="login-card-description">Sign into your account</p>
+                    <p class="description">Sign into your account</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
@@ -46,8 +46,8 @@
                         <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
                     </form>
                     <a href="#!" class="forgot-password-link">Forgot password?</a>
-                    <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register') }}" class="text-reset">Register here</a></p>
-                    <nav class="login-card-footer-nav">
+                    <p class="footer-text">Don't have an account? <a href="{{ route('register') }}" class="text-reset">Register here</a></p>
+                    <nav class="footer-nav">
                         <a href="#!">Terms of use.</a>
                         <a href="#!">Privacy policy</a>
                     </nav>

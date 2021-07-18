@@ -16,7 +16,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->char('attela_reference', 20)->unique();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('trading_name');
             $table->string('registered_as')->nullable();
             $table->string('registration_number', 50)->nullable();
