@@ -7,11 +7,11 @@ window._ = require('lodash');
  */
 
 try {
+    require('bootstrap');
+    require('toastr');
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
-    require('toastr/build');
 } catch (e) {}
 
 /**
