@@ -50,12 +50,12 @@
                                         <x-icon-person-bounding-box class="w-5 h-5 d-none d-sm-block"/>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li><a class="dropdown-item" href="#">Users</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('users.users') }}">Users</a></li>
                                         <li><a class="dropdown-item" href="#">Roles</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Permissions</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('users.permissions') }}">Permissions</a></li>
                                     </ul>
                                 </li>
                                 @endif
@@ -109,6 +109,7 @@
         {{ csrf_field() }}
     </form>
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
