@@ -18,6 +18,7 @@ class CreateRolesTable extends Migration
             $table->foreignId('company_id')->constrained();
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
