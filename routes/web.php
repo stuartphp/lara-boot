@@ -21,3 +21,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('selection/{id}', [App\Http\Controllers\HomeController::class, 'selection'])->name('selection');
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('user-profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('user-profile');
+
+Route::prefix('users')->as('users.')->group(function () {
+    Route::get('/users', [App\Http\Controllers\Admin\Users\UserManagerController::class, 'users'])->name('users');
+    Route::get('/permissions', [App\Http\Controllers\Admin\Users\UserManagerController::class, 'permission'])->name('permissions');
+});
+
