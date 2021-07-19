@@ -20,6 +20,7 @@ class Role extends Model
     ];
 
     protected $fillable = [
+        'company_id',
         'name',
         'created_at',
         'updated_at',
@@ -33,6 +34,6 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class)->orderBy('title', 'asc');
+        return $this->belongsToMany(Permission::class);
     }
 }

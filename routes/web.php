@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('selection/{id}', [App\Http\Controllers\HomeController::class, 'selection'])->name('selection');
+Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+Route::get('user-profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('user-profile');

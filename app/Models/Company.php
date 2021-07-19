@@ -32,4 +32,10 @@ class Company extends Model
         'document_logo',
         'website_logo',
     ];
+
+    public function setup()
+    {
+        return $this->belongsTo(CompanySetup::class);
+    }
+    
 }

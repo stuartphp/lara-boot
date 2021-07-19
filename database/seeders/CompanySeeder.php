@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Company;
+use App\Models\CompanySetup;
+use App\Models\FinancialYear;
 
 class CompanySeeder extends Seeder
 {
@@ -33,6 +35,19 @@ class CompanySeeder extends Seeder
             'slogan'=>null,
             'document_logo'=>null,
             'website_logo'=>null,
+        ]);
+        FinancialYear::create(
+            [
+                'company_id'=>1,
+                'name'=>'2021/2022',
+                'start_date' => '2021-03-01',
+                'end_date' => '2022-02-28',
+                'is_active' => 1
+            ]
+        );
+        CompanySetup::create([
+            'company_id'=>1,
+            'financial_year'=>1
         ]);
     }
 }
