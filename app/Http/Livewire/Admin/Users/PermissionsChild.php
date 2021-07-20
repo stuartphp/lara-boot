@@ -13,9 +13,9 @@ class PermissionsChild extends Component
         'showEditForm',
     ];
     public $confirmingItemDeletion = false;
-    public $primaryKey;
     public $confirmingItemCreation = false;
     public $confirmingItemEdition = false;
+    public $primaryKey;
     public $item;
     public $message ='';
     public $parent = 'admin.users.permissions';
@@ -24,7 +24,6 @@ class PermissionsChild extends Component
         'item.group' => '',
         'item.title' => 'required'
     ];
-
 
     public function render()
     {
@@ -67,16 +66,17 @@ class PermissionsChild extends Component
     {
         $this->resetErrorBag();
         $this->reset(['item']);
-        $this->dispatchBrowserEvent('modal', ['modal'=>'editForm', 'action'=>'show']);
+        $this->dispatchBrowserEvent('modal', ['modal'=>'createForm', 'action'=>'show']);
     }
 
     public function createItem()
     {
         $this->validate();
         Permission::create([
+            'group' => $this->item['group'],
             'title' => $this->item['title']
         ]);
-        $this->dispatchBrowserEvent('modal', ['modal'=>'editForm', 'action'=>'hide']);
+        $this->dispatchBrowserEvent('modal', ['modal'=>'createForm', 'action'=>'hide']);
         $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Created']);
         $this->emitTo($this->parent, 'refresh');
     }

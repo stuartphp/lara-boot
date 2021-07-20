@@ -15,7 +15,7 @@ class Permissions extends Component
     public $sortBy = 'title';
     public $searchTerm='';
     public $sortAsc = true;
-    public $pageSize = 10;
+    public $pageSize = 15;
 
     public function updatedSearchTerm()
     {

@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/custom.css?{{ time() }}">
     @stack('css')
     @livewireStyles
@@ -50,12 +51,18 @@
                                         <x-icon-person-bounding-box class="w-5 h-5 d-none d-sm-block"/>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li><a class="dropdown-item" href="{{ route('users.users') }}">Users</a></li>
-                                        <li><a class="dropdown-item" href="#">Roles</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="{{ route('users.permissions') }}">Permissions</a></li>
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','users_access']))==1)
+                                            <li><a class="dropdown-item" href="{{ route('users.users') }}">Users</a></li>
+                                        @endif
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','roles_access']))==1)
+                                            <li><a class="dropdown-item" href="{{ route('users.roles.index') }}">Roles</a></li>
+                                        @endif
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','permissions_access']))==1)
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ route('users.permissions') }}">Permissions</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                                 @endif
@@ -109,10 +116,11 @@
         {{ csrf_field() }}
     </form>
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @livewireScripts
     @stack('script')

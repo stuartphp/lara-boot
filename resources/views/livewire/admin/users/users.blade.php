@@ -3,21 +3,20 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6">{{ __('Users') }}</div>
-                <div class="col-md-1">+</div>
+                <div class="col-md-1"><a href="#" wire:click="$emitTo('admin.users.users-child', 'showCreateForm')"><span class="fs-5">+</span></a></div>
                 <div class="col-md-1">
                     <x-page-size/>
                 </div>
-                <div class="col-md-4 text-end">
+                <div class="col-md-4">
                     <input type="text" class="form-control form-control-sm" wire:model.debounce.300ms="searchTerm" placeholder="Search" aria-label="Search"/>
                 </div>
             </div>
-
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
-                    <th>{{ __('Name') }} <x-icon-sort sortField="name" :sort-by="$sortBy" :sort-asc="$sortAsc" /></th>
-                    <th>{{ __('Email') }} <x-icon-sort sortField="email" :sort-by="$sortBy" :sort-asc="$sortAsc" /></th>
+                    <th><a href="#" wire:click="sortBy('name')">{{ __('Name') }} <x-icon-sort sortField="name" :sort-by="$sortBy" :sort-asc="$sortAsc" /></a></th>
+                    <th><a href="#" wire:click="sortBy('email')">{{ __('Email') }} <x-icon-sort sortField="email" :sort-by="$sortBy" :sort-asc="$sortAsc" /></a></th>
                     <th>{{ __('Verified') }}</th>
                     <th>{{ __('Role') }}</th>
                     <th class="col-1">{{ __('Action') }}</th>
@@ -39,8 +38,8 @@
                                       <x-icon-three-dots-vertical/>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#" component='user-manager.users-child' id="{{ $item->id }}">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#"component='user-manager.users-child' id="{{ $item->id }}">Delete</a></li>
+                                        <li><a class="dropdown-item" href="#" wire:click="$emitTo('admin.users.users-child', 'showEditForm', {{ $item->id }})">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" wire:click="$emitTo('admin.users.users-child', 'showDeleteForm',  {{$item->id}});">Delete</a></li>
                                     </ul>
                                   </div>
                             </td>
@@ -52,4 +51,5 @@
             </table>
         </div>
     </div>
+    @livewire('admin.users.users-child')
 </div>

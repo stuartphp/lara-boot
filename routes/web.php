@@ -23,7 +23,8 @@ Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index
 Route::get('user-profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('user-profile');
 
 Route::prefix('users')->as('users.')->group(function () {
-    Route::get('/users', [App\Http\Controllers\Admin\Users\UserManagerController::class, 'users'])->name('users');
-    Route::get('/permissions', [App\Http\Controllers\Admin\Users\UserManagerController::class, 'permission'])->name('permissions');
+    Route::get('/users', function(){ return view('admin.users.users'); })->name('users');
+    Route::get('/permissions', function(){ return view('admin.users.permissions'); })->name('permissions');
+    Route::resource('roles', App\Http\Controllers\Admin\Users\RolesController::class);
 });
 
