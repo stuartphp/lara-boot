@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Role;
+use App\Models\Permission;
 
 class RolesController extends Controller
 {
@@ -24,7 +26,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::orderBy('title','asc')->pluck('title', 'id');
+        return view('admin.users.roles.create', compact('permissions'));
     }
 
     /**
@@ -35,7 +38,10 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = Role::create($request->all());
+        $role->permissions()->sync($request->input('permissions', []));
+
+        return redirect()->route('users.roles.index');
     }
 
     /**
@@ -55,9 +61,14 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+
+        $permissions = Permission::orderBy('title','asc')->pluck('title', 'id');
+
+        $role->load('permissions');
+
+        return view('admin.users.roles.edit', compact('permissions', 'role'));
     }
 
     /**
@@ -67,9 +78,12 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permissions', []));
+
+        return redirect()->route('users.roles.index');
     }
 
     /**

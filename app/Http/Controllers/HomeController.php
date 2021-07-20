@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $companies = DB::table('company_user')->where('companies.user_id',\auth()->id())
+        $companies = DB::table('company_user')->where('company_user.user_id',auth()->id())
             ->join('companies', 'companies.id', '=', 'company_id')
             ->pluck('trading_name','companies.id');
         return view('home', compact('companies'));

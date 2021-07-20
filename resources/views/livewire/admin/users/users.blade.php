@@ -3,7 +3,11 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6">{{ __('Users') }}</div>
-                <div class="col-md-1"><a href="#" wire:click="$emitTo('admin.users.users-child', 'showCreateForm')"><span class="fs-5">+</span></a></div>
+                <div class="col-md-1">
+                    @if (count(array_intersect(session()->get('grant'), ['SU','users_create']))==1)
+                    <a href="#" wire:click="$emitTo('admin.users.users-child', 'showCreateForm')"><span class="fs-5">+</span></a>
+                    @endif
+                </div>
                 <div class="col-md-1">
                     <x-page-size/>
                 </div>
@@ -38,10 +42,14 @@
                                       <x-icon-three-dots-vertical/>
                                     </a>
                                     <ul class="dropdown-menu">
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','users_update']))==1)
                                         <li><a class="dropdown-item" href="#" wire:click="$emitTo('admin.users.users-child', 'showEditForm', {{ $item->id }})">Edit</a></li>
+                                        @endif
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','users_delete']))==1)
                                         <li><a class="dropdown-item" href="#" wire:click="$emitTo('admin.users.users-child', 'showDeleteForm',  {{$item->id}});">Delete</a></li>
+                                        @endif
                                     </ul>
-                                  </div>
+                                </div>
                             </td>
                         </tr>
                     @empty

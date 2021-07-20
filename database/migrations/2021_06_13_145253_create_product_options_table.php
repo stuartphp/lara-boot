@@ -17,8 +17,15 @@ class CreateProductOptionsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('store_id')->constrained();
+            $table->foreignId('product_category_id')->constrained();
+            $table->string('product_code');
+            $table->string('name');
+            $table->string('slug');
+            $table->text('description');
+            $table->string('keywords')->nullable();
+            $table->string('barcode')->nullable();
+            $table->string('isbn_number')->nullable();
             $table->double('cost_price')->nullable();
-            $table->string('attribute')->nullable();
             $table->foreignId('product_unit_id')->constrained();
             $table->unsignedInteger('deductable');
             $table->double('price_list1')->nullable();
