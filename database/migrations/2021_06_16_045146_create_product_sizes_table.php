@@ -20,7 +20,7 @@ class CreateProductSizesTable extends Migration
             $table->unsignedInteger('length');
             $table->unsignedInteger('width');
             $table->unsignedInteger('height');
-            $table->date('expiry_date');
+            $table->date('expiry_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

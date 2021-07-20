@@ -1,5 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    Roles
+    @livewire('admin.users.roles')
 @endsection
 

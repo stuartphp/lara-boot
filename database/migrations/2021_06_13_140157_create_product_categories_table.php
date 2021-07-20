@@ -17,6 +17,7 @@ class CreateProductCategoriesTable extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained();
             $table->string('name');
+            $table->string('slug');
             $table->unsignedBigInteger('parent_id');
             $table->boolean('is_active');
             $table->timestamps();
