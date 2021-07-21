@@ -16,6 +16,15 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained();
+            $table->string('code')->nullable();
+            $table->string('name');
+            $table->text('description');
+            $table->string('slug');
+            $table->string('keywords');
+            $table->foreignId('product_category_id')->constrained();
+            $table->foreignId('product_unit_id')->constrained();
+            $table->integer('cost_price')->nullable();
+            $table->integer('min_order_quantity')->nullable();
             $table->unsignedInteger('viewed')->nullable();
             $table->string('main_image')->nullable();
             $table->boolean('is_service');

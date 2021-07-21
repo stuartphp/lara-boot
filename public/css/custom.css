@@ -66,7 +66,9 @@ text-decoration: underline;
     margin-top: 5px;
 }
 
-
+.text-danger {
+    color: #f83844;
+}
 
 .w-0	{width: 0px;}
 .w-px	{width: 1px;}

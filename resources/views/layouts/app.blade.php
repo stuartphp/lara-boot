@@ -44,6 +44,25 @@
                                     </li>
                                 @endcan
 
+                                @if(count(array_intersect(session()->get('grant'), ['SU','products_management_access']))==1)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle {{request()->is('products/*') ? 'active' : ''}}" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <x-icon-box class="w-5 h-5 d-none d-sm-block"/>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','products_access']))==1)
+                                            <li><a class="dropdown-item" href="{{ route('users.users') }}">Products</a></li>
+                                        @endif
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','product_categories_access']))==1)
+                                            <li><a class="dropdown-item" href="{{ route('products.categories') }}">Categories</a></li>
+                                        @endif
+                                        @if (count(array_intersect(session()->get('grant'), ['SU','product_units_access']))==1)
+                                            <li><a class="dropdown-item" href="{{ route('users.permissions') }}">Units</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                @endif
                                 @if(count(array_intersect(session()->get('grant'), ['SU','users_management_access']))==1)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle {{request()->is('users/*') ? 'active' : ''}}" href="#" id="navbarScrollingDropdown" role="button"
